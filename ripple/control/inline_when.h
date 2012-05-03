@@ -1,26 +1,34 @@
-/* 
- * File:   inline_when.h
- * Author: pfultz
- *
- * Created on January 20, 2012, 4:58 PM
- */
-
-#ifndef INLINE_WHEN_H
-#define	INLINE_WHEN_H
-
-#define DETAIL_PX_INLINE_WHEN_0(...) 
-#define DETAIL_PX_INLINE_WHEN_1(...) __VA_ARGS__
-
-#ifdef PX_CONFIG_STD
-#define DETAIL_PX_INLINE_WHEN_I(bit) DETAIL_PX_INLINE_WHEN_ ## bit
-#define PX_INLINE_WHEN(bit) DETAIL_PX_INLINE_WHEN_I(bit)
-#else
-#define DETAIL_PX_INLINE_WHEN_RES(res) res
-#define DETAIL_PX_INLINE_WHEN_III(bit) DETAIL_PX_INLINE_WHEN_RES(DETAIL_PX_INLINE_WHEN_ ## bit)
-#define DETAIL_PX_INLINE_WHEN_II(bit) DETAIL_PX_INLINE_WHEN_III(bit)
-#define DETAIL_PX_INLINE_WHEN_I(args) DETAIL_PX_INLINE_WHEN_II args
-#define PX_INLINE_WHEN(bit) DETAIL_PX_INLINE_WHEN_I((bit))
-#endif
-
-#endif	/* INLINE_WHEN_H */
-
+# /* ********************************************************************
+#  *                                                                    *
+#  *    (C) Copyright Paul Mensonides, Paul Fultz II 2003-2012.         *
+#  *                                                                    *
+#  *    Distributed under the Boost Software License, Version 1.0.      *
+#  *    (See accompanying file LICENSE).                                *
+#  *                                                                    *
+#  *    See http://github.com/pfultz2/Ripple for most recent version.   *
+#  *                                                                    *
+#  ******************************************************************** */
+#
+# ifndef RIPPLE_PREPROCESSOR_CONTROL_INLINE_WHEN_H
+# define RIPPLE_PREPROCESSOR_CONTROL_INLINE_WHEN_H
+#
+# include <ripple/cat.h>
+# include <ripple/config.h>
+#
+# /* RPP_INLINE_WHEN */
+#
+# define RPP_INLINE_WHEN(bit) RPP_PRIMITIVE_CAT(DETAIL_RPP_INLINE_WHEN_, bit)
+# define RPP_INLINE_WHEN_ID() RPP_INLINE_WHEN
+#
+# if CONFIG_RIPPLE_STD
+# endif
+#
+# if CONFIG_RIPPLE_STD
+#    define DETAIL_RPP_INLINE_WHEN_0(...)
+#    define DETAIL_RPP_INLINE_WHEN_1(...) __VA_ARGS__
+# else
+#    define DETAIL_RPP_INLINE_WHEN_0(x)
+#    define DETAIL_RPP_INLINE_WHEN_1(x) x
+# endif
+#
+# endif

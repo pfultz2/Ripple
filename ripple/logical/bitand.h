@@ -1,30 +1,29 @@
-/* 
- * File:   bitand.h
- * Author: pfultz
- *
- * Created on January 17, 2012, 1:42 PM
- */
-
-#ifndef BITAND_H
-#define	BITAND_H
-
-#include "config.h"
-
-#define DETAIL_PX_BITAND_00 0
-#define DETAIL_PX_BITAND_01 0
-#define DETAIL_PX_BITAND_10 0
-#define DETAIL_PX_BITAND_11 1
-
-#ifdef PX_CONFIG_STD
-#define DETAIL_PX_BITAND_I(x, y) DETAIL_PX_BITAND_ ## x ## y
-#define PX_BITAND(x, y) DETAIL_PX_BITAND_I(x, y)
-#else
-#define DETAIL_PX_BITAND_RES(res) res
-#define DETAIL_PX_BITAND_III(x, y) DETAIL_PX_BITAND_RES(DETAIL_PX_BITAND_ ## x ## y)
-#define DETAIL_PX_BITAND_II(x, y) DETAIL_PX_BITAND_III(x, y)
-#define DETAIL_PX_BITAND_I(args) DETAIL_PX_BITAND_II args
-#define PX_BITAND(x, y) DETAIL_PX_BITAND_I((x, y))
-#endif
-
-#endif	/* BITAND_H */
-
+# /* ********************************************************************
+#  *                                                                    *
+#  *    (C) Copyright Paul Mensonides, Paul Fultz II 2003-2012.         *
+#  *                                                                    *
+#  *    Distributed under the Boost Software License, Version 1.0.      *
+#  *    (See accompanying file LICENSE).                                *
+#  *                                                                    *
+#  *    See http://github.com/pfultz2/Ripple for most recent version.   *
+#  *                                                                    *
+#  ******************************************************************** */
+#
+# ifndef RIPPLE_PREPROCESSOR_LOGICAL_BITAND_H
+# define RIPPLE_PREPROCESSOR_LOGICAL_BITAND_H
+#
+# include <ripple/cat.h>
+# include <ripple/config.h>
+#
+# /* RPP_BITAND */
+#
+# define RPP_BITAND(x) RPP_PRIMITIVE_CAT(DETAIL_RPP_BITAND_, x)
+# define RPP_BITAND_ID() RPP_BITAND
+#
+# if CONFIG_RIPPLE_STD
+# endif
+#
+# define DETAIL_RPP_BITAND_0(y) 0
+# define DETAIL_RPP_BITAND_1(y) y
+#
+# endif

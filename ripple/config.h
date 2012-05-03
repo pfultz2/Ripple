@@ -1,20 +1,29 @@
-/* 
- * File:   config.h
- * Author: pfultz
- *
- * Created on January 17, 2012, 1:02 PM
- */
-
-#ifndef CONFIG_H
-#define	CONFIG_H
-
-#ifdef _MSC_VER
-#define PX_CONFIG_MSVC
-#endif
-
-#if defined(__GNUC__) || defined(__clang__)
-#define PX_CONFIG_STD
-#endif
-
-#endif	/* CONFIG_H */
-
+# /* ********************************************************************
+#  *                                                                    *
+#  *    (C) Copyright Paul Mensonides, Paul Fultz II 2003-2012.         *
+#  *                                                                    *
+#  *    Distributed under the Boost Software License, Version 1.0.      *
+#  *    (See accompanying file LICENSE).                                *
+#  *                                                                    *
+#  *    See http://github.com/pfultz2/Ripple for most recent version.   *
+#  *                                                                    *
+#  ******************************************************************** */
+#
+# ifndef RIPPLE_PREPROCESSOR_CONFIG_H
+# define RIPPLE_PREPROCESSOR_CONFIG_H
+#
+# /* CONFIG_RIPPLE_STD */
+#
+# if !defined CONFIG_RIPPLE_STD
+#    if defined (_MSVC_)
+#        define CONFIG_RIPPLE_STD 0
+#    else
+#        define CONFIG_RIPPLE_STD 1
+#    endif
+# endif
+#
+#
+# define CONFIG_RIPPLE_STD_ID() CONFIG_RIPPLE_STD
+#
+#
+# endif
