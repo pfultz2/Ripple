@@ -15,7 +15,6 @@
 # include <ripple/facilities/abbr.h>
 # include <ripple/facilities/as_args.h>
 # include <ripple/facilities/binary.h>
-# include <ripple/facilities/bind.h>
 # include <ripple/facilities/default.h>
 # include <ripple/facilities/empty.h>
 # include <ripple/facilities/encode.h>

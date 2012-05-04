@@ -18,13 +18,16 @@
 # include <ripple/recursion/expr.h>
 # include <ripple/tuple/eat.h>
 # include <ripple/tuple/rem.h>
+# include <ripple/invoke.h>
 #
 # /* RPP_FOR */
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_FOR(pred, op, macro, ...) RPP_FOR_S(RPP_STATE(), pred, op, macro, __VA_ARGS__)
 # else
-#    define RPP_FOR(pred, op, macro, state) RPP_FOR_S(RPP_STATE(), pred, op, macro, state)
+#    define RPP_FOR_MSVC(pred, op, macro, ...) DETAIL_RPP_FOR_U(RPP_STATE(), pred, op, macro, (__VA_ARGS__))
+#    define RPP_FOR_MSVC_REM(x) RPP_FOR_S_MSVC x
+#    define RPP_FOR(...) RPP_FOR_S_MSVC_REM((__VA_ARGS__))
 # endif
 #
 # define RPP_FOR_ID() RPP_FOR
@@ -34,7 +37,9 @@
 # if CONFIG_RIPPLE_STD
 #    define RPP_FOR_S(s, pred, op, macro, ...) DETAIL_RPP_FOR_U(s, pred, op, macro, (__VA_ARGS__))
 # else
-#    define RPP_FOR_S(s, pred, op, macro, state) DETAIL_RPP_FOR_U(s, pred, op, macro, (state))
+#    define RPP_FOR_S_MSVC(s, pred, op, macro, ...) DETAIL_RPP_FOR_U(s, pred, op, macro, (__VA_ARGS__))
+#    define RPP_FOR_S_MSVC_REM(x) RPP_FOR_S_MSVC x
+#    define RPP_FOR_S(...) RPP_FOR_S_MSVC_REM((__VA_ARGS__))
 # endif
 #
 # define RPP_FOR_S_ID() RPP_FOR_S
@@ -43,18 +48,18 @@
 # define DETAIL_RPP_FOR_I(s, pred, op, macro, ps) \
     RPP_DEFER(RPP_EXPR_S)(s)(DETAIL_RPP_FOR_II( \
         RPP_OBSTRUCT(), s, RPP_NEXT(s), \
-        pred, RPP_CALL(pred), op, RPP_CALL(op), \
-        macro, RPP_TRAMPOLINE(macro), ps \
+        pred, RPP_INVOKER(pred), op, RPP_INVOKER(op), \
+        macro, RPP_INVOKER(macro), ps \
     )) \
     /**/
 # define DETAIL_RPP_FOR_INDIRECT() DETAIL_RPP_FOR_II
-# define DETAIL_RPP_FOR_II(_, s, o, pred, _p, op, _o, macro, _m, ps) \
-    RPP_IIF _(_p()(s, pred, RPP_REM ps))( \
+# define DETAIL_RPP_FOR_II(_, s, ns, pred, _p, op, _o, macro, _m, ps) \
+    RPP_IIF _(_p _(pred, ns, RPP_REM ps))( \
         RPP_EXPR_S(s), RPP_EAT \
     )( \
-        _m _()(o, macro, RPP_REM ps) \
+        _m _(macro, ns, RPP_REM ps) \
         DETAIL_RPP_FOR_INDIRECT _()( \
-            RPP_OBSTRUCT _(), RPP_NEXT(s), o, pred, _p, op, _o, macro, _m, (_o()(s, op, RPP_REM ps)) \
+            RPP_OBSTRUCT _(), RPP_NEXT(s), ns, pred, _p, op, _o, macro, _m, (_o _(op, ns, RPP_REM ps)) \
         ) \
     ) \
     /**/
