@@ -41,6 +41,11 @@ RPP_EXPR(RPP_DELINEATE(3, RPP_IDENTITY(+), RPP_BIND_DATA(MACRO, x))) // z0 + z1 
 RPP_EXPR(RPP_DELINEATE_FROM_TO(5, 10, RPP_IDENTITY(+), MACRO)) // 5 + 6 + 7 + 8 + 9
 #undef MACRO
 
+//RPP_DELINEATE_PARAMS
+RPP_DELINEATE_PARAMS(3, RPP_COMMA, class T) // class T0, class T1, class T2
+RPP_DELINEATE_PARAMS(3, RPP_COMMA, class T, = U) // class T0 = U0, class T1 = U1, class T2 = U2
+RPP_DELINEATE_PARAMS(3, RPP_COMMA, class T, = void RPP_INTERCEPT) // class T0 = void, class T1 = void, class T2 = void
+
 //RPP_FOR
 #define PRED(s, x) RPP_BOOL(x)
 #define OP(s, x) RPP_DEC(x)
