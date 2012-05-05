@@ -7,6 +7,7 @@
 # include <ripple/arbitrary.h>
 # include <ripple/arithmetic.h>
 # include <ripple/array.h>
+# include <ripple/bind.h>
 # include <ripple/cat.h>
 # include <ripple/comparison.h>
 # include <ripple/config.h>

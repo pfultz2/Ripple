@@ -23,42 +23,34 @@
 #
 # /* RPP_DELINEATE */
 #
-# if CONFIG_RIPPLE_STD
-#    define RPP_DELINEATE(count, sep, ...) RPP_DELINEATE_S(RPP_STATE(), count, sep, __VA_ARGS__)
-# else
-#    define RPP_DELINEATE(count, sep, macro, data) RPP_DELINEATE_S(RPP_STATE(), count, sep, macro, data)
-# endif
+# define RPP_DELINEATE(count, sep, macro) RPP_DELINEATE_S(RPP_STATE(), count, sep, macro)
 #
 # define RPP_DELINEATE_ID() RPP_DELINEATE
 #
 # /* RPP_DELINEATE_S */
 #
-# if CONFIG_RIPPLE_STD
-#    define RPP_DELINEATE_S(s, count, sep, ...) \
-        DETAIL_RPP_DELINEATE_U(s, count, sep, RPP_NON_OPTIONAL(__VA_ARGS__), RPP_PACK_OPTIONAL(__VA_ARGS__)) \
+# define RPP_DELINEATE_S(s, count, sep, macro) \
+        DETAIL_RPP_DELINEATE_U(s, count, sep, macro) \
         /**/
-# else
-#    define RPP_DELINEATE_S(s, count, sep, macro, data) DETAIL_RPP_DELINEATE_U(s, count, sep, macro, (data))
-# endif
 #
 # define RPP_DELINEATE_S_ID() RPP_DELINEATE_S
 #
-# define DETAIL_RPP_DELINEATE_U(s, count, sep, macro, pd) \
+# define DETAIL_RPP_DELINEATE_U(s, count, sep, macro) \
     RPP_EXPR_S(s)(DETAIL_RPP_DELINEATE_I( \
-        s, RPP_NEXT(s), count, RPP_EMPTY, sep, macro, RPP_TRAMPOLINE(macro), pd \
+        s, RPP_NEXT(s), count, RPP_EMPTY, sep, macro, RPP_INVOKER(macro) \
     )) \
     /**/
 # define DETAIL_RPP_DELINEATE_INDIRECT() DETAIL_RPP_DELINEATE_I
-# define DETAIL_RPP_DELINEATE_I(s, o, count, sep, ss, macro, _m, pd) \
+# define DETAIL_RPP_DELINEATE_I(s, ns, count, sep, ss, macro, _m) \
     RPP_IF(count)( \
-        DETAIL_RPP_DELINEATE_II, RPP_TUPLE_EAT(9) \
-    )(RPP_OBSTRUCT(), RPP_NEXT(s), o, RPP_DEC(count), sep, ss, macro, _m, pd) \
+        DETAIL_RPP_DELINEATE_II, RPP_EAT \
+    )(RPP_OBSTRUCT(), RPP_NEXT(s), ns, RPP_DEC(count), sep, ss, macro, _m) \
     /**/
-# define DETAIL_RPP_DELINEATE_II(_, s, o, count, sep, ss, macro, _m, pd) \
+# define DETAIL_RPP_DELINEATE_II(_, s, ns, count, sep, ss, macro, _m) \
     RPP_EXPR_S(s) _(DETAIL_RPP_DELINEATE_INDIRECT _()( \
-        s, o, count, ss, ss, macro, _m, pd \
+        s, ns, count, ss, ss, macro, _m \
     )) \
-    _m()(o, macro, count RPP_EXPOSE(pd)) sep() \
+    _m _(macro, ns, count) sep() \
     /**/
 #
 # endif
