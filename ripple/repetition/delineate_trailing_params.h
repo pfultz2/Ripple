@@ -21,7 +21,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_DELINEATE_TRAILING_PARAMS(count, sep, ...) RPP_DELINEATE_TRAILING_PARAMS_BYPASS(RPP_LIMIT_EXPR, count, sep, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_DELINEATE_TRAILING_PARAMS(count, sep, param) RPP_DELINEATE_TRAILING_PARAMS_BYPASS(RPP_LIMIT_EXPR, count, sep, param)
 # endif
 #
@@ -31,7 +31,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_DELINEATE_TRAILING_PARAMS_BYPASS(s, count, sep, ...) RPP_WHEN(count)(sep()) RPP_DELINEATE_PARAMS_BYPASS(s, count, sep, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_DELINEATE_TRAILING_PARAMS_BYPASS(s, count, sep, param) RPP_WHEN(count)(sep()) RPP_DELINEATE_PARAMS_BYPASS(s, count, sep, param)
 # endif
 #
