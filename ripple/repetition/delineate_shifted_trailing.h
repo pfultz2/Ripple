@@ -20,21 +20,13 @@
 #
 # /* RPP_DELINEATE_SHIFTED_TRAILING */
 #
-# if CONFIG_RIPPLE_STD
-#    define RPP_DELINEATE_SHIFTED_TRAILING(count, sep, ...) RPP_DELINEATE_SHIFTED_TRAILING_S(RPP_STATE(), count, sep, __VA_ARGS__)
-# else
-#    define RPP_DELINEATE_SHIFTED_TRAILING(count, sep, macro, data) RPP_DELINEATE_SHIFTED_TRAILING_S(RPP_STATE(), count, sep, macro, data)
-# endif
+# define RPP_DELINEATE_SHIFTED_TRAILING(count, sep, macro) RPP_DELINEATE_SHIFTED_TRAILING_S(RPP_STATE(), count, sep, macro)
 #
 # define RPP_DELINEATE_SHIFTED_TRAILING_ID() RPP_DELINEATE_SHIFTED_TRAILING
 #
 # /* RPP_DELINEATE_SHIFTED_TRAILING_S */
 #
-# if CONFIG_RIPPLE_STD
-#    define RPP_DELINEATE_SHIFTED_TRAILING_S(s, count, sep, ...) RPP_WHEN(RPP_DEC(count))(sep()) RPP_DELINEATE_SHIFTED_S(s, count, sep, __VA_ARGS__)
-# else
-#    define RPP_DELINEATE_SHIFTED_TRAILING_S(s, count, sep, macro, data) RPP_WHEN(RPP_DEC(count))(sep()) RPP_DELINEATE_SHIFTED_S(s, count, sep, macro, data)
-# endif
+# define RPP_DELINEATE_SHIFTED_TRAILING_S(s, count, sep, macro) RPP_WHEN(RPP_DEC(count))(sep()) RPP_DELINEATE_SHIFTED_S(s, count, sep, macro)
 #
 # define RPP_DELINEATE_SHIFTED_TRAILING_S_ID() RPP_DELINEATE_SHIFTED_TRAILING_S
 #
