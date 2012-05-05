@@ -27,7 +27,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_DELINEATE_SHIFTED_PARAMS(count, sep, ...) RPP_DELINEATE_SHIFTED_PARAMS_BYPASS(RPP_LIMIT_EXPR, count, sep, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_DELINEATE_SHIFTED_PARAMS(count, sep, param) RPP_DELINEATE_SHIFTED_PARAMS_BYPASS(RPP_LIMIT_EXPR, count, sep, param)
 # endif
 #
@@ -37,7 +37,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_DELINEATE_SHIFTED_PARAMS_BYPASS(s, count, sep, ...) DETAIL_RPP_DELINEATE_SHIFTED_PARAMS_U(s, RPP_IS_VARIADIC(__VA_ARGS__), count, sep, (__VA_ARGS__))
-# else
+# else /* TODO */
 #    define RPP_DELINEATE_SHIFTED_PARAMS_BYPASS(s, count, sep, param) DETAIL_RPP_DELINEATE_SHIFTED_PARAMS_U(s, RPP_IS_BINARY(param), count, sep, (param))
 # endif
 #
@@ -62,7 +62,7 @@
 #    define DETAIL_RPP_DELINEATE_SHIFTED_PARAMS_0(c, ...) __VA_ARGS__ ## c
 #    define DETAIL_RPP_DELINEATE_SHIFTED_PARAMS_1(c, ...) RPP_DEFER(DETAIL_RPP_DELINEATE_SHIFTED_PARAMS_2)(c, RPP_REM __VA_ARGS__)
 #    define DETAIL_RPP_DELINEATE_SHIFTED_PARAMS_2(c, a, ...) a ## c __VA_ARGS__ ## c
-# else
+# else /* TODO */
 #    define DETAIL_RPP_DELINEATE_SHIFTED_PARAMS_0(c, param) param ## c
 #    define DETAIL_RPP_DELINEATE_SHIFTED_PARAMS_1(c, param) RPP_DEFER(DETAIL_RPP_DELINEATE_SHIFTED_PARAMS_2)(c, RPP_TUPLE_REM(2) param)
 #    define DETAIL_RPP_DELINEATE_SHIFTED_PARAMS_2(c, a, b) a ## c b ## c
