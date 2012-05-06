@@ -103,3 +103,8 @@ RPP_EXPR(RPP_FOR(PRED, OP, MACRO, 10)) // { 10 } { 9 } { 8 } { 7 } { 6 } { 5 } {
 #undef OP
 #undef MACRO
 
+// //RPP_REPEAT
+// #define MACRO(s, n, id) RPP_COMMA_IF(n) class id ## n
+// RPP_EXPR(RPP_REPEAT(3, MACRO, T)) // class T0, class T1, class T2
+// #undef MACRO
+

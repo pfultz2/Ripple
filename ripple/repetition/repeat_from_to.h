@@ -21,7 +21,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_REPEAT_FROM_TO(from, to, ...) RPP_REPEAT_FROM_TO_S(RPP_STATE(), from, to, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_REPEAT_FROM_TO(from, to, macro, data) RPP_REPEAT_FROM_TO_S(RPP_STATE(), from, to, macro, data)
 # endif
 #
@@ -31,7 +31,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_REPEAT_FROM_TO_S(s, from, to, ...) RPP_DELINEATE_FROM_TO_S(s, from, to, RPP_EMPTY, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_REPEAT_FROM_TO_S(s, from, to, macro, data) RPP_DELINEATE_FROM_TO_S(s, from, to, RPP_EMPTY, macro, data)
 # endif
 #

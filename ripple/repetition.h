@@ -34,7 +34,6 @@
 # include <ripple/repetition/enum_trailing.h>
 # include <ripple/repetition/enum_trailing_params.h>
 # include <ripple/repetition/for.h>
-# include <ripple/repetition/for_aux.h>
 # include <ripple/repetition/parametric.h>
 # include <ripple/repetition/repeat.h>
 # include <ripple/repetition/repeat_from_to.h>

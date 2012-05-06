@@ -21,7 +21,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_REPEAT(count, ...) RPP_REPEAT_S(RPP_STATE(), count, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_REPEAT(count, macro, data) RPP_REPEAT_S(RPP_STATE(), count, macro, data)
 # endif
 #
@@ -31,7 +31,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_REPEAT_S(s, count, ...) RPP_DELINEATE_S(s, count, RPP_EMPTY, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_REPEAT_S(s, count, macro, data) RPP_DELINEATE_S(s, count, RPP_EMPTY, macro, data)
 # endif
 #

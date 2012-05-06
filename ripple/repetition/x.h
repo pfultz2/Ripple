@@ -25,7 +25,6 @@
 # include <ripple/repetition/x/enum_shifted_trailing.h>
 # include <ripple/repetition/x/enum_trailing.h>
 # include <ripple/repetition/x/for.h>
-# include <ripple/repetition/x/for_aux.h>
 # include <ripple/repetition/x/repeat.h>
 # include <ripple/repetition/x/repeat_from_to.h>
 # include <ripple/repetition/x/repeat_shifted.h>
