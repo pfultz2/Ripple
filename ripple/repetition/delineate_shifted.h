@@ -38,20 +38,20 @@
 #
 # define DETAIL_RPP_DELINEATE_SHIFTED_U(s, count, sep, macro) \
     RPP_EXPR_S(s)(DETAIL_RPP_DELINEATE_SHIFTED_I( \
-        s, RPP_NEXT(s), RPP_DEC(count), RPP_EMPTY, sep, macro, RPP_INVOKER(macro) \
+        RPP_NEXT(s), RPP_DEC(count), RPP_EMPTY, sep, macro, RPP_INVOKER(macro) \
     )) \
     /**/
 # define DETAIL_RPP_DELINEATE_SHIFTED_INDIRECT() DETAIL_RPP_DELINEATE_SHIFTED_I
-# define DETAIL_RPP_DELINEATE_SHIFTED_I(s, o, count, sep, ss, macro, _m) \
+# define DETAIL_RPP_DELINEATE_SHIFTED_I(s, count, sep, ss, macro, _m) \
     RPP_IF(count)( \
         DETAIL_RPP_DELINEATE_SHIFTED_II, RPP_EAT \
-    )(RPP_OBSTRUCT(), RPP_NEXT(s), o, count, sep, ss, macro, _m) \
+    )(RPP_OBSTRUCT(), RPP_NEXT(s), count, sep, ss, macro, _m) \
     /**/
-# define DETAIL_RPP_DELINEATE_SHIFTED_II(_, s, o, count, sep, ss, macro, _m) \
+# define DETAIL_RPP_DELINEATE_SHIFTED_II(_, s, count, sep, ss, macro, _m) \
     RPP_EXPR_S(s) _(DETAIL_RPP_DELINEATE_SHIFTED_INDIRECT _()( \
-        s, o, RPP_DEC(count), ss, ss, macro, _m \
+        s, RPP_DEC(count), ss, ss, macro, _m \
     )) \
-    _m _(macro, o, count) sep() \
+    _m _()(s, macro, s, count) sep() \
     /**/
 #
 # endif
