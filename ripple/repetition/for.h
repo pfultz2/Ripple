@@ -47,19 +47,19 @@
 # define DETAIL_RPP_FOR_U(s, pred, op, macro, ps) DETAIL_RPP_FOR_I(RPP_NEXT(s), pred, op, macro, ps)
 # define DETAIL_RPP_FOR_I(s, pred, op, macro, ps) \
     RPP_DEFER(RPP_EXPR_S)(s)(DETAIL_RPP_FOR_II( \
-        RPP_OBSTRUCT(), s, RPP_NEXT(s), \
+        RPP_OBSTRUCT(), RPP_NEXT(s), \
         pred, RPP_INVOKER(pred), op, RPP_INVOKER(op), \
         macro, RPP_INVOKER(macro), ps \
     )) \
     /**/
 # define DETAIL_RPP_FOR_INDIRECT() DETAIL_RPP_FOR_II
-# define DETAIL_RPP_FOR_II(_, s, ns, pred, _p, op, _o, macro, _m, ps) \
-    RPP_IIF _(_p _(pred, ns, RPP_REM ps))( \
+# define DETAIL_RPP_FOR_II(_, s, pred, _p, op, _o, macro, _m, ps) \
+    RPP_IIF _(_p()(s, pred, s, RPP_REM ps))( \
         RPP_EXPR_S(s), RPP_EAT \
     )( \
-        _m _(macro, ns, RPP_REM ps) \
+        _m _()(s, macro, s, RPP_REM ps) \
         DETAIL_RPP_FOR_INDIRECT _()( \
-            RPP_OBSTRUCT _(), RPP_NEXT(s), ns, pred, _p, op, _o, macro, _m, (_o _(op, ns, RPP_REM ps)) \
+            RPP_OBSTRUCT _(), RPP_NEXT(s), pred, _p, op, _o, macro, _m, (_o _()(s, op, s, RPP_REM ps)) \
         ) \
     ) \
     /**/

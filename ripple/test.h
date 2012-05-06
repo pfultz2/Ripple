@@ -56,10 +56,10 @@ RPP_EXPR(RPP_DELINEATE_SHIFTED(3, RPP_COMMA, RPP_BIND_DATA(MACRO, y))) // y1, y2
 RPP_EXPR(RPP_DELINEATE_SHIFTED(3, RPP_IDENTITY(+), RPP_BIND_DATA(MACRO, z))) // z1 + z2
 #undef MACRO
 
-// //RPP_DELINEATE_SHIFTED_PARAMS
-// RPP_DELINEATE_SHIFTED_PARAMS(3, RPP_COMMA, class T) // class T1, class T2
-// RPP_DELINEATE_SHIFTED_PARAMS(3, RPP_COMMA, class T, = U) // class T1 = U1, class T2 = U2
-// RPP_DELINEATE_SHIFTED_PARAMS(3, RPP_COMMA, class T, = void RPP_INTERCEPT)// class T1 = void, class T2 = void
+//RPP_DELINEATE_SHIFTED_PARAMS
+RPP_DELINEATE_SHIFTED_PARAMS(3, RPP_COMMA, class T) // class T1, class T2
+RPP_DELINEATE_SHIFTED_PARAMS(3, RPP_COMMA, class T, = U) // class T1 = U1, class T2 = U2
+RPP_DELINEATE_SHIFTED_PARAMS(3, RPP_COMMA, class T, = void RPP_INTERCEPT)// class T1 = void, class T2 = void
 
 //RPP_ENUM
 #define FIXED(s, n) class
@@ -94,12 +94,12 @@ RPP_EXPR(RPP_ENUM(3, RPP_BIND_DATA(TTP, T)))
 #undef FIXED
 #undef TTP
 
-// //RPP_FOR
-// #define PRED(s, x) RPP_BOOL(x)
-// #define OP(s, x) RPP_DEC(x)
-// #define MACRO(s, x) { x }
-// RPP_EXPR(RPP_FOR(PRED, OP, MACRO, 10)) // { 10 } { 9 } { 8 } { 7 } { 6 } { 5 } { 4 } { 3 } { 2 } { 1 } 
-// #undef PRED
-// #undef OP
-// #undef MACRO
+//RPP_FOR
+#define PRED(s, x) RPP_BOOL(x)
+#define OP(s, x) RPP_DEC(x)
+#define MACRO(s, x) { x }
+RPP_EXPR(RPP_FOR(PRED, OP, MACRO, 10)) // { 10 } { 9 } { 8 } { 7 } { 6 } { 5 } { 4 } { 3 } { 2 } { 1 } 
+#undef PRED
+#undef OP
+#undef MACRO
 
