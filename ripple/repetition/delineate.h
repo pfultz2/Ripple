@@ -37,20 +37,19 @@
 #
 # define DETAIL_RPP_DELINEATE_U(s, count, sep, macro) \
     RPP_EXPR_S(s)(DETAIL_RPP_DELINEATE_I( \
-        s, RPP_NEXT(s), count, RPP_EMPTY, sep, macro, RPP_INVOKER(macro) \
+        s, count, RPP_EMPTY, sep, macro, RPP_INVOKER(macro) \
     )) \
     /**/
 # define DETAIL_RPP_DELINEATE_INDIRECT() DETAIL_RPP_DELINEATE_I
-# define DETAIL_RPP_DELINEATE_I(s, ns, count, sep, ss, macro, _m) \
+# define DETAIL_RPP_DELINEATE_I(s, count, sep, ss, macro, _m) \
     RPP_IF(count)( \
         DETAIL_RPP_DELINEATE_II, RPP_EAT \
-    )(RPP_OBSTRUCT(), RPP_NEXT(s), ns, RPP_DEC(count), sep, ss, macro, _m) \
+    )(RPP_OBSTRUCT(), RPP_NEXT(s), RPP_DEC(count), sep, ss, macro, _m) \
     /**/
-# define DETAIL_RPP_DELINEATE_II(_, s, ns, count, sep, ss, macro, _m) \
+# define DETAIL_RPP_DELINEATE_II(_, s, count, sep, ss, macro, _m) \
     RPP_EXPR_S(s) _(DETAIL_RPP_DELINEATE_INDIRECT _()( \
-        s, ns, count, ss, ss, macro, _m \
+        s, count, ss, ss, macro, _m \
     )) \
-    _m _(macro, ns, count) sep() \
+    _m _()(s, macro, s, count) sep() \
     /**/
-#
 # endif

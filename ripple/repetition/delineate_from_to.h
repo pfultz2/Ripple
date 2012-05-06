@@ -37,19 +37,19 @@
 # define RPP_DELINEATE_FROM_TO_S_ID() RPP_DELINEATE_FROM_TO_S
 #
 # define DETAIL_RPP_DELINEATE_FROM_TO_U(s, from, to, sep, macro) \
-    RPP_EXPR_S(s)(DETAIL_RPP_DELINEATE_FROM_TO_I(RPP_NEXT(s), RPP_NEXT(s), from, to, RPP_EMPTY, sep, macro, RPP_INVOKER(macro))) \
+    RPP_EXPR_S(s)(DETAIL_RPP_DELINEATE_FROM_TO_I(RPP_NEXT(s), from, to, RPP_EMPTY, sep, macro, RPP_INVOKER(macro))) \
     /**/
 # define DETAIL_RPP_DELINEATE_FROM_TO_INDIRECT() DETAIL_RPP_DELINEATE_FROM_TO_I
-# define DETAIL_RPP_DELINEATE_FROM_TO_I(s, o, from, to, s1, s2, macro, _m) \
+# define DETAIL_RPP_DELINEATE_FROM_TO_I(s, from, to, s1, s2, macro, _m) \
     RPP_IIF(RPP_NOT_EQUAL(from, to))( \
         DETAIL_RPP_DELINEATE_FROM_TO_II, RPP_EAT \
-    )(s, o, from, RPP_DEC(to), s1, s2, macro, _m) \
+    )(s, from, RPP_DEC(to), s1, s2, macro, _m) \
     /**/
-# define DETAIL_RPP_DELINEATE_FROM_TO_II(s, o, from, to, s1, s2, macro, _m) \
+# define DETAIL_RPP_DELINEATE_FROM_TO_II(s, from, to, s1, s2, macro, _m) \
     RPP_DEFER(RPP_EXPR_S(s))(RPP_DEFER(DETAIL_RPP_DELINEATE_FROM_TO_INDIRECT)()( \
-        RPP_NEXT(s), o, from, to, s2, s2, macro, _m \
+        RPP_NEXT(s), from, to, s2, s2, macro, _m \
     )) \
-    RPP_DEFER(_m)(macro, o, to) s1()
+    RPP_DEFER(_m)()(s, macro, s, to) s1()
     /**/
 #
 # endif

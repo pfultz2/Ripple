@@ -22,7 +22,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_ENUM_SHIFTED_TRAILING_PARAMS(count, ...) RPP_ENUM_SHIFTED_TRAILING_PARAMS_BYPASS(RPP_LIMIT_EXPR, count, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_ENUM_SHIFTED_TRAILING_PARAMS(count, param) RPP_ENUM_SHIFTED_TRAILING_PARAMS_BYPASS(RPP_LIMIT_EXPR, count, param)
 # endif
 #
@@ -32,7 +32,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_ENUM_SHIFTED_TRAILING_PARAMS_BYPASS(s, count, ...) RPP_COMMA_IF(RPP_DEC(count)) RPP_ENUM_SHIFTED_PARAMS_BYPASS(s, count, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_ENUM_SHIFTED_TRAILING_PARAMS_BYPASS(s, count, param) RPP_COMMA_IF(RPP_DEC(count)) RPP_ENUM_SHIFTED_PARAMS_BYPASS(s, count, param)
 # endif
 #

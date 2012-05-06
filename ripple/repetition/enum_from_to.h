@@ -19,21 +19,13 @@
 #
 # /* RPP_ENUM_FROM_TO */
 #
-# if CONFIG_RIPPLE_STD
-#    define RPP_ENUM_FROM_TO(from, to, ...) RPP_ENUM_FROM_TO_S(RPP_STATE(), from, to, __VA_ARGS__)
-# else
-#    define RPP_ENUM_FROM_TO(from, to, macro, data) RPP_ENUM_FROM_TO_S(RPP_STATE(), from, to, macro, data)
-# endif
+# define RPP_ENUM_FROM_TO(from, to, macro) RPP_ENUM_FROM_TO_S(RPP_STATE(), from, to, macro)
 #
 # define RPP_ENUM_FROM_TO_ID() RPP_ENUM_FROM_TO
 #
 # /* RPP_ENUM_FROM_TO_S */
 #
-# if CONFIG_RIPPLE_STD
-#    define RPP_ENUM_FROM_TO_S(s, from, to, ...) RPP_DELINEATE_FROM_TO_S(s, from, to, RPP_COMMA, __VA_ARGS__)
-# else
-#    define RPP_ENUM_FROM_TO_S(s, from, to, macro, data) RPP_DELINEATE_FROM_TO_S(s, from, to, RPP_COMMA, macro, data)
-# endif
+# define RPP_ENUM_FROM_TO_S(s, from, to, macro) RPP_DELINEATE_FROM_TO_S(s, from, to, RPP_COMMA, macro)
 #
 # define RPP_ENUM_FROM_TO_S_ID() RPP_ENUM_FROM_TO_S
 #

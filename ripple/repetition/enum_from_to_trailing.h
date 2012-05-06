@@ -20,21 +20,13 @@
 #
 # /* RPP_ENUM_FROM_TO_TRAILING */
 #
-# if CONFIG_RIPPLE_STD
-#    define RPP_ENUM_FROM_TO_TRAILING(from, to, ...) RPP_ENUM_FROM_TO_TRAILING_S(RPP_STATE(), from, to, __VA_ARGS__)
-# else
-#    define RPP_ENUM_FROM_TO_TRAILING(from, to, macro, data) RPP_ENUM_FROM_TO_TRAILING_S(RPP_STATE(), from, to, macro, data)
-# endif
+# define RPP_ENUM_FROM_TO_TRAILING(from, to, macro) RPP_ENUM_FROM_TO_TRAILING_S(RPP_STATE(), from, to, macro)
 #
 # define RPP_ENUM_FROM_TO_TRAILING_ID() RPP_ENUM_FROM_TO_TRAILING
 #
 # /* RPP_ENUM_FROM_TO_TRAILING_S */
 #
-# if CONFIG_RIPPLE_STD
-#    define RPP_ENUM_FROM_TO_TRAILING_S(s, from, to, ...) RPP_COMMA_IF(RPP_NOT_EQUAL(from, to)) RPP_ENUM_FROM_TO_S(s, from, to, __VA_ARGS__)
-# else
-#    define RPP_ENUM_FROM_TO_TRAILING_S(s, from, to, macro, data) RPP_COMMA_IF(RPP_NOT_EQUAL(from, to)) RPP_ENUM_FROM_TO_S(s, from, to, macro, data)
-# endif
+# define RPP_ENUM_FROM_TO_TRAILING_S(s, from, to, macro) RPP_COMMA_IF(RPP_NOT_EQUAL(from, to)) RPP_ENUM_FROM_TO_S(s, from, to, macro)
 #
 # define RPP_ENUM_FROM_TO_TRAILING_S_ID() RPP_ENUM_FROM_TO_TRAILING_S
 #

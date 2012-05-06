@@ -19,21 +19,13 @@
 #
 # /* RPP_ENUM_SHIFTED */
 #
-# if CONFIG_RIPPLE_STD
-#    define RPP_ENUM_SHIFTED(count, ...) RPP_ENUM_SHIFTED_S(RPP_STATE(), count, __VA_ARGS__)
-# else
-#    define RPP_ENUM_SHIFTED(count, macro, data) RPP_ENUM_SHIFTED_S(RPP_STATE(), count, macro, data)
-# endif
+# define RPP_ENUM_SHIFTED(count, macro) RPP_ENUM_SHIFTED_S(RPP_STATE(), count, macro)
 #
 # define RPP_ENUM_SHIFTED_ID() RPP_ENUM_SHIFTED
 #
 # /* RPP_ENUM_SHIFTED_S */
 #
-# if CONFIG_RIPPLE_STD
-#    define RPP_ENUM_SHIFTED_S(s, count, ...) RPP_DELINEATE_SHIFTED_S(s, count, RPP_COMMA, __VA_ARGS__)
-# else
-#    define RPP_ENUM_SHIFTED_S(s, count, macro, data) RPP_DELINEATE_SHIFTED_S(s, count, RPP_COMMA, macro, data)
-# endif
+# define RPP_ENUM_SHIFTED_S(s, count, macro) RPP_DELINEATE_SHIFTED_S(s, count, RPP_COMMA, macro)
 #
 # define RPP_ENUM_SHIFTED_S_ID() RPP_ENUM_SHIFTED_S
 #

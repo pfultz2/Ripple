@@ -21,7 +21,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_ENUM_PARAMS(count, ...) RPP_ENUM_PARAMS_BYPASS(RPP_LIMIT_EXPR, count, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_ENUM_PARAMS(count, param) RPP_ENUM_PARAMS_BYPASS(RPP_LIMIT_EXPR, count, param)
 # endif
 #
@@ -31,7 +31,7 @@
 #
 # if CONFIG_RIPPLE_STD
 #    define RPP_ENUM_PARAMS_BYPASS(s, count, ...) RPP_DELINEATE_PARAMS_BYPASS(s, count, RPP_COMMA, __VA_ARGS__)
-# else
+# else /* TODO */
 #    define RPP_ENUM_PARAMS_BYPASS(s, count, param) RPP_DELINEATE_PARAMS_BYPASS(s, count, RPP_COMMA, param)
 # endif
 #
