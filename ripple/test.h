@@ -108,3 +108,72 @@ RPP_EXPR(RPP_FOR(PRED, OP, MACRO, 10)) // { 10 } { 9 } { 8 } { 7 } { 6 } { 5 } {
 RPP_EXPR(RPP_REPEAT(3, RPP_BIND_DATA(MACRO, T))) // class T0, class T1, class T2
 #undef MACRO
 
+//auto
+//RPP_AUTO_DELINEATE
+#define MACRO(s, n, var) var ## n
+#define COUNT(s, n) n
+RPP_AUTO_DELINEATE(3, RPP_COMMA, COUNT) // 0, 1, 2
+RPP_AUTO_DELINEATE(3, RPP_EMPTY, RPP_BIND_DATA(MACRO, x)) // x0 x1 x2
+RPP_AUTO_DELINEATE(3, RPP_COMMA,RPP_BIND_DATA(MACRO, y)) // y0, y1, y2
+RPP_AUTO_DELINEATE(3, RPP_IDENTITY(+), RPP_BIND_DATA(MACRO, x)) // z0 + z1 + z2
+#undef MACRO
+
+//RPP_AUTO_DELINEATE_FROM_TO
+#define MACRO(s, n) n
+RPP_AUTO_DELINEATE_FROM_TO(5, 10, RPP_IDENTITY(+), MACRO) // 5 + 6 + 7 + 8 + 9
+#undef MACRO
+
+//RPP_AUTO_DELINEATE_SHIFTED
+#define MACRO(s, n, var) var ## n
+RPP_AUTO_DELINEATE_SHIFTED(3, RPP_EMPTY, RPP_BIND_DATA(MACRO, x)) // x1 x2
+RPP_AUTO_DELINEATE_SHIFTED(3, RPP_COMMA, RPP_BIND_DATA(MACRO, y)) // y1, y2
+RPP_AUTO_DELINEATE_SHIFTED(3, RPP_IDENTITY(+), RPP_BIND_DATA(MACRO, z)) // z1 + z2
+#undef MACRO
+
+//RPP_AUTO_ENUM
+#define FIXED(s, n, text) text
+#define TTP(s, n, id) \
+    template< \
+        RPP_EXPR_S(s)(RPP_ENUM_S( \
+            s, RPP_INC(n), RPP_BIND_DATA(FIXED, class) \
+        )) \
+    > class id ## n \
+    /**/
+RPP_AUTO_ENUM(3, RPP_BIND_DATA(TTP, T))
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// template<class> class T0,
+// template<class, class> class T1,
+// template<class, class, class> class T2
+#undef FIXED
+#undef TTP
+
+//RPP_AUTO_ENUM
+#define FIXED(s, n, text) text
+#define TTP(s, n, id) \
+    template \
+    < \
+        RPP_AUTO_ENUM(RPP_INC(n), RPP_BIND_DATA(FIXED, class)) \
+    > class id ## n \
+    /**/
+RPP_AUTO_ENUM(3, RPP_BIND_DATA(TTP, T))
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// template<class> class T0,
+// template<class, class> class T1,
+// template<class, class, class> class T2
+#undef FIXED
+#undef TTP
+
+//RPP_AUTO_FOR
+#define PRED(s, x) RPP_BOOL(x)
+#define OP(s, x) RPP_DEC(x)
+#define MACRO(s, x) { x }
+RPP_AUTO_FOR(PRED, OP, MACRO, 10) // { 10 } { 9 } { 8 } { 7 } { 6 } { 5 } { 4 } { 3 } { 2 } { 1 } 
+#undef PRED
+#undef OP
+#undef MACRO
+
+//RPP_REPEAT
+#define MACRO(s, n, id) RPP_COMMA_IF(n) class id ## n
+RPP_AUTO_REPEAT(3, RPP_BIND_DATA(MACRO, T)) // class T0, class T1, class T2
+#undef MACRO
+
