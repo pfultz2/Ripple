@@ -147,7 +147,7 @@ RPP_AUTO_ENUM(3, RPP_BIND_DATA(TTP, T))
 #undef FIXED
 #undef TTP
 
-//RPP_AUTO_ENUM
+
 #define FIXED(s, n, text) text
 #define TTP(s, n, id) \
     template \

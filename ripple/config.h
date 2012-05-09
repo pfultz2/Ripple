@@ -22,6 +22,15 @@
 #    endif
 # endif
 #
+# /* CONFIG_RIPPLE_NO_EMPTY_CONCAT */
+#
+# if !defined CONFIG_RIPPLE_NO_EMPTY_CONCAT
+#    if defined(__clang__) || !CONFIG_RIPPLE_STD
+#        define CONFIG_RIPPLE_NO_EMPTY_CONCAT 1
+#    else
+#        define CONFIG_RIPPLE_NO_EMPTY_CONCAT 0
+#    endif
+# endif
 #
 # define CONFIG_RIPPLE_STD_ID() CONFIG_RIPPLE_STD
 #
