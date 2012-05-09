@@ -24,7 +24,7 @@
 #
 # /* RPP_DELINEATE_SHIFTED */
 #
-#    define RPP_DELINEATE_SHIFTED(count, sep, macro) RPP_DELINEATE_SHIFTED_S(RPP_STATE(), count, sep, macro)
+# define RPP_DELINEATE_SHIFTED(count, sep, macro) RPP_DELINEATE_SHIFTED_S(RPP_STATE(), count, sep, macro)
 #
 # define RPP_DELINEATE_SHIFTED_ID() RPP_DELINEATE_SHIFTED
 #
