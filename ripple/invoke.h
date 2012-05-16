@@ -9,25 +9,24 @@
  *                                                                    *
  ******************************************************************** */
 
-#ifndef RIPPLE_PREPROCESSOR_DETECTION_H
-#define RIPPLE_PREPROCESSOR_DETECTION_H
+#ifndef RIPPLE_PREPROCESSOR_INVOKE_H
+#define RIPPLE_PREPROCESSOR_INVOKE_H
 #include <ripple/config.h>
-#include <ripple/cat.h>
+#include <ripple/type.h>
+#include <ripple/detection.h>
 
-#define DETAIL_RPP_CHECK_N(x, n, ...) n
-#define RPP_CHECK(...) DETAIL_RPP_CHECK_N(__VA_ARGS__, 0,)
+#define DETAIL_RPP_INVOKER_0(e) RPP_MACRO_INVOKE
+#define DETAIL_RPP_INVOKER_1(e) RPP_GENERIC(INVOKE, e)
+#define RPP_INVOKER(e) RPP_CAT(DETAIL_RPP_INVOKER_, RPP_IS_PAREN(e))(e)
 
-#define RPP_PROBE(x) x, 1,
+#define RPP_INVOKE(e, ...) RPP_INVOKE_S(RPP_STATE(), e, __VA_ARGS__)
 
-#define RPP_IS_1(...) CHECK(RPP_CAT_HEAD(DETAIL_RPP_IS_1_, __VA_ARGS__))
-#define DETAIL_RPP_IS_1_1 RPP_PROBE(~)
+#define RPP_INVOKE_S(s, e, ...) RPP_INVOKER(e)()(s, e, __VA_ARGS__)
 
-#define DETAIL_RPP_EMPTY_PROBE_DETAIL_RPP_EMPTY_PROBE RPP_PROBE(~)
-#define RPP_IS_EMPTY(x) RPP_CHECK(RPP_CAT(DETAIL_RPP_EMPTY_PROBE_, x  DETAIL_RPP_EMPTY_PROBE))
+#define RPP_MACRO_INVOKE() DETAIL_RPP_MACRO_INVOKE
+#define DETAIL_RPP_MACRO_INVOKE(s, m, ...) RPP_EXPR_S(s)(m RPP_OBSTRUCT()(__VA_ARGS__))
 
-#define DETAIL_RPP_PAREN_PROBE(...) RPP_PROBE(~)
-#define DETAIL_RPP_IS_PAREN_HEAD(x, ...) x
-#define RPP_IS_PAREN(...) RPP_CHECK(DETAIL_RPP_PAREN_PROBE DETAIL_RPP_IS_PAREN_HEAD(__VA_ARGS__,))
+
 
 
 #endif

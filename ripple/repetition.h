@@ -9,25 +9,18 @@
  *                                                                    *
  ******************************************************************** */
 
-#ifndef RIPPLE_PREPROCESSOR_DETECTION_H
-#define RIPPLE_PREPROCESSOR_DETECTION_H
+#ifndef RIPPLE_PREPROCESSOR_REPETITION_H
+#define RIPPLE_PREPROCESSOR_REPETITION_H
 #include <ripple/config.h>
-#include <ripple/cat.h>
 
-#define DETAIL_RPP_CHECK_N(x, n, ...) n
-#define RPP_CHECK(...) DETAIL_RPP_CHECK_N(__VA_ARGS__, 0,)
-
-#define RPP_PROBE(x) x, 1,
-
-#define RPP_IS_1(...) CHECK(RPP_CAT_HEAD(DETAIL_RPP_IS_1_, __VA_ARGS__))
-#define DETAIL_RPP_IS_1_1 RPP_PROBE(~)
-
-#define DETAIL_RPP_EMPTY_PROBE_DETAIL_RPP_EMPTY_PROBE RPP_PROBE(~)
-#define RPP_IS_EMPTY(x) RPP_CHECK(RPP_CAT(DETAIL_RPP_EMPTY_PROBE_, x  DETAIL_RPP_EMPTY_PROBE))
-
-#define DETAIL_RPP_PAREN_PROBE(...) RPP_PROBE(~)
-#define DETAIL_RPP_IS_PAREN_HEAD(x, ...) x
-#define RPP_IS_PAREN(...) RPP_CHECK(DETAIL_RPP_PAREN_PROBE DETAIL_RPP_IS_PAREN_HEAD(__VA_ARGS__,))
-
+#define RPP_REPEAT_S(s, n, m, ...) DETAIL_RPP_REPEAT_I(OBSTRUCT(), INC(s), n, m, __VA_ARGS__)
+        
+#define DETAIL_RPP_REPEAT_INDIRECT() DETAIL_RPP_REPEAT_I
+#define DETAIL_RPP_REPEAT_I(_, s, n, m, ...) \
+WHEN _(n)(EXPR_S _(s) \
+( \
+    DETAIL_RPP_REPEAT_INDIRECT _()(OBSTRUCT _(), INC _(s), DEC _(n), m, __VA_ARGS__) \
+))\
+m _(s, n, __VA_ARGS__)
 
 #endif

@@ -26,6 +26,8 @@
 
 #define RPP_EXPR_S(s) RPP_PRIMITIVE_CAT(DETAIL_RPP_EXPR_, s)
 
+#define RPP_EXPR RPP_EXPR_S(RPP_STATE())
+
 
 #define DETAIL_RPP_EXPR_0(...) __VA_ARGS__
 #define DETAIL_RPP_EXPR_1(...) __VA_ARGS__
