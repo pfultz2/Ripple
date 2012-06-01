@@ -89,21 +89,6 @@
 #define RPP_COMPARE_Y(x) x
 #define RPP_COMPARE_Z(x) x
 
-#define RPP_COMPARE___cplusplus(x) x
-#define RPP_COMPARE___DATE__(x) x
-#define RPP_COMPARE___FILE__(x) x
-#define RPP_COMPARE___LINE__(x) x
-#define RPP_COMPARE___STDC__(x) x
-#define RPP_COMPARE___STDC_HOSTED__(x) x
-#define RPP_COMPARE___STDC_VERSION__(x) x
-#define RPP_COMPARE___TIME__(x) x
-#define RPP_COMPARE___STDC_IEC_559__(x) x
-#define RPP_COMPARE___STDC_IEC_559_COMPLEX__(x) x
-#define RPP_COMPARE___STDC_ISO_10646__(x) x
-#define RPP_COMPARE__Bool(x) x
-#define RPP_COMPARE__Complex(x) x
-#define RPP_COMPARE__Imaginary(x) x
-#define RPP_COMPARE__Pragma(x) x
 #define RPP_COMPARE_asm(x) x
 #define RPP_COMPARE_and(x) x
 #define RPP_COMPARE_and_eq(x) x
