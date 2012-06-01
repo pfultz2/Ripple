@@ -21,7 +21,7 @@
 
 #define RPP_PRIMITIVE_COMPARE(x, y) RPP_IS_PAREN \
  ( \
-    RPP_COMPARE_ ## x ( RPP_COMPARE_ ## y (()) ) \
+    RPP_COMPARE_ ## x ( RPP_COMPARE_ ## y RPP_EMPTY()(()) ) \
  )
 
 #define RPP_NOT_EQUAL(x, y)  \

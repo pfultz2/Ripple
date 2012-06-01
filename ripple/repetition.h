@@ -14,6 +14,7 @@
 #include <ripple/config.h>
 #include <ripple/basic.h>
 #include <ripple/recursion.h>
+#include <ripple/compare.h>
 
 
 // #define REPEAT_S(s, n, m, ...) \
@@ -32,7 +33,6 @@
 #define RPP_DELINEATE(n, sep, m) RPP_DELINEATE_S(RPP_STATE(), n, sep, m)
 #define RPP_DELINEATE_S(s, n, sep, m) DETAIL_RPP_DELINEATE_U(s, n, sep, m, RPP_INVOKER(m))
 
-
 #define DETAIL_RPP_DELINEATE_U(s, n, sep, m, _m) DETAIL_RPP_DELINEATE_I(RPP_OBSTRUCT(), RPP_INC(s), RPP_DEC(n), sep, m, _m)
 #define DETAIL_RPP_DELINEATE_INDIRECT() DETAIL_RPP_DELINEATE_U
 #define DETAIL_RPP_DELINEATE_I(_, s, n, sep, m, _m) \
@@ -41,6 +41,20 @@
             RPP_EXPR_S _(s)(DETAIL_RPP_DELINEATE_INDIRECT _()(s, n, sep, m, _m) sep _()) \
         ) \
         RPP_EXPR_S _(s)(_m _()(s, m, s, n)) 
+
+
+
+#define RPP_DELINEATE_FROM_TO(from, to, sep, m) RPP_DELINEATE_FROM_TO_S(RPP_STATE(), from, to, sep, m)
+#define RPP_DELINEATE_FROM_TO_S(s, from, to, sep, m) DETAIL_RPP_DELINEATE_FROM_TO_U(s, from, to, sep, m, RPP_INVOKER(m))
+
+#define DETAIL_RPP_DELINEATE_FROM_TO_U(s, from, to, sep, m, _m) DETAIL_RPP_DELINEATE_FROM_TO_I(RPP_OBSTRUCT(), RPP_INC(s), from, RPP_DEC(to), sep, m, _m)
+#define DETAIL_RPP_DELINEATE_FROM_TO_INDIRECT() DETAIL_RPP_DELINEATE_FROM_TO_U
+#define DETAIL_RPP_DELINEATE_FROM_TO_I(_, s, from, to, sep, m, _m) \
+        RPP_WHEN _(RPP_NOT_EQUAL(from, to)) \
+        ( \
+            RPP_EXPR_S _(s)(DETAIL_RPP_DELINEATE_FROM_TO_INDIRECT _()(s, from, to, sep, m, _m) sep _()) \
+        ) \
+        RPP_EXPR_S _(s)(_m _()(s, m, s, to)) 
 
 
 #endif
