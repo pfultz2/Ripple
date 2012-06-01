@@ -22,7 +22,7 @@
 
 #define RPP_STRIP(...) RPP_EAT __VA_ARGS__
 
-#define RPP_GENERIC(m, ...) RPP_CAT_ALL(m, _, RPP_TYPEOF(__VA_ARGS__))
+#define RPP_GENERIC(m, ...) RPP_CAT_ALL(RPP_TYPEOF(__VA_ARGS__), _, m)
 
 #define RPP_PAIR(...) RPP_REM __VA_ARGS__
 

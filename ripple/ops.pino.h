@@ -13,11 +13,13 @@
 #define RIPPLE_PREPROCESSOR_OPS_H
 #include <ripple/config.h>
 
-#define RPP_INC(x) RPP_INC_I RPP_PRIMITIVE_CAT(DETAIL_RPP_OPS_, x)
-#define RPP_INC_I(x, y) y
+#define DETAIL_RPP_OPS_RES(x) x
 
-#define RPP_DEC(x) RPP_DEC_I RPP_PRIMITIVE_CAT(DETAIL_RPP_OPS_, x)
-#define RPP_DEC_I(x, y) x
+#define RPP_INC(x) DETAIL_RPP_OPS_RES(DETAIL_RPP_INC_I RPP_PRIMITIVE_CAT(DETAIL_RPP_OPS_, x))
+#define DETAIL_RPP_INC_I(x, y) y
+
+#define RPP_DEC(x) DETAIL_RPP_OPS_RES(DETAIL_RPP_DEC_I RPP_PRIMITIVE_CAT(DETAIL_RPP_OPS_, x))
+#define DETAIL_RPP_DEC_I(x, y) x
 
 $for i in range(65537)
 {

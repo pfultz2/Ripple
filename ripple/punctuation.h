@@ -9,23 +9,10 @@
  *                                                                    *
  ******************************************************************** */
 
-#ifndef RIPPLE_PREPROCESSOR_BASIC_H
-#define RIPPLE_PREPROCESSOR_BASIC_H
+#ifndef RIPPLE_PREPROCESSOR_PUNCTUATION_H
+#define RIPPLE_PREPROCESSOR_PUNCTUATION_H
 #include <ripple/config.h>
 
-#define RPP_EMPTY()
-
-#define RPP_EAT(...)
-
-#define RPP_REM(...) __VA_ARGS__
-
-#define RPP_EXPAND(...) __VA_ARGS__
-
-#define RPP_IDENTITY(...) __VA_ARGS__ RPP_EMPTY
-
-#define RPP_DEFER(...) __VA_ARGS__ RPP_EMPTY()
-
-#define RPP_OBSTRUCT(...) __VA_ARGS__ RPP_DEFER(RPP_EMPTY)()
-
+#define RPP_COMMA() ,
 
 #endif

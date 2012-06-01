@@ -14,12 +14,14 @@
 
 
 #include <ripple/basic.h>
+#include <ripple/bind.h>
 #include <ripple/cat.h>
 #include <ripple/config.h>
 #include <ripple/detection.h>
 #include <ripple/invoke.h>
 #include <ripple/logic.h>
 #include <ripple/ops.h>
+#include <ripple/punctuation.h>
 #include <ripple/recursion.h>
 #include <ripple/repetition.h>
 #include <ripple/search.h>
