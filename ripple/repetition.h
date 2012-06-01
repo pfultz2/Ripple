@@ -28,8 +28,6 @@
 //         ) \
 //         m _(s, n, __VA_ARGS__)
 
-
-
 #define RPP_DELINEATE(n, sep, m) RPP_DELINEATE_S(RPP_STATE(), n, sep, m)
 #define RPP_DELINEATE_S(s, n, sep, m) DETAIL_RPP_DELINEATE_U(s, n, sep, m, RPP_INVOKER(m))
 
@@ -40,7 +38,7 @@
         ( \
             RPP_EXPR_S _(s)(DETAIL_RPP_DELINEATE_INDIRECT _()(s, n, sep, m, _m) sep _()) \
         ) \
-        RPP_EXPR_S _(s)(_m _()(s, m, s, n)) 
+        _m()(s, m, s, n)
 
 
 
@@ -54,7 +52,13 @@
         ( \
             RPP_EXPR_S _(s)(DETAIL_RPP_DELINEATE_FROM_TO_INDIRECT _()(s, from, to, sep, m, _m) sep _()) \
         ) \
-        RPP_EXPR_S _(s)(_m _()(s, m, s, to)) 
+        _m()(s, m, s, to)
+
+#define RPP_ENUM(n, m) RPP_ENUM_S(RPP_STATE(), n, m)
+#define RPP_ENUM_S(s, n, m) RPP_DELINEATE_S(s, n, RPP_COMMA, m)
+
+#define RPP_ENUM_FROM_TO(from, to, m) RPP_ENUM_FROM_TO_S(RPP_STATE(), from, to, m)
+#define RPP_ENUM_FROM_TO_S(s, from, to, m) RPP_DELINEATE_FROM_TO_S(s, from, to, RPP_COMMA, m)
 
 
 #endif

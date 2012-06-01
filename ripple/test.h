@@ -94,38 +94,38 @@ RPP_EXPR(RPP_DELINEATE_FROM_TO(5, 10, RPP_IDENTITY(+), MACRO)) // 5 + 6 + 7 + 8 
 // RPP_DELINEATE_SHIFTED_PARAMS(3, RPP_COMMA, class T, = U) // class T1 = U1, class T2 = U2
 // RPP_DELINEATE_SHIFTED_PARAMS(3, RPP_COMMA, class T, = void RPP_INTERCEPT)// class T1 = void, class T2 = void
 
-// //RPP_ENUM
-// #define FIXED(s, n) class
-// #define TTP(s, n) \
-//     template< \
-//         RPP_EXPR_S(s)(RPP_ENUM_S( \
-//             s, RPP_INC(n), FIXED \
-//         )) \
-//     > class T ## n \
-//     /**/
-// RPP_EXPR(RPP_ENUM(3, TTP))
-// // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-// // template<class> class T0,
-// // template<class, class> class T1,
-// // template<class, class, class> class T2
-// #undef FIXED
-// #undef TTP
+//RPP_ENUM
+#define FIXED(s, n) class
+#define TTP(s, n) \
+    template< \
+        RPP_EXPR_S(s)(RPP_ENUM_S( \
+            s, RPP_INC(n), FIXED \
+        )) \
+    > class T ## n \
+    /**/
+RPP_EXPR(RPP_ENUM(3, TTP))
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// template<class> class T0,
+// template<class, class> class T1,
+// template<class, class, class> class T2
+#undef FIXED
+#undef TTP
 
-// #define FIXED(s, n, text) text
-// #define TTP(s, n, id) \
-//     template< \
-//         RPP_EXPR_S(s)(RPP_ENUM_S( \
-//             s, RPP_INC(n), RPP_BIND_DATA(FIXED, class) \
-//         )) \
-//     > class id ## n \
-//     /**/
-// RPP_EXPR(RPP_ENUM(3, RPP_BIND_DATA(TTP, T)))
-// // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-// // template<class> class T0,
-// // template<class, class> class T1,
-// // template<class, class, class> class T2
-// #undef FIXED
-// #undef TTP
+#define FIXED(s, n, text) text
+#define TTP(s, n, id) \
+    template< \
+        RPP_EXPR_S(s)(RPP_ENUM_S( \
+            s, RPP_INC(n), RPP_BIND_DATA(FIXED, class) \
+        )) \
+    > class id ## n \
+    /**/
+RPP_EXPR(RPP_ENUM(3, RPP_BIND_DATA(TTP, T)))
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// template<class> class T0,
+// template<class, class> class T1,
+// template<class, class, class> class T2
+#undef FIXED
+#undef TTP
 
 // //RPP_FOR
 // #define PRED(s, x) RPP_BOOL(x)
