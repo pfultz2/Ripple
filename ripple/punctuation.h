@@ -15,4 +15,6 @@
 
 #define RPP_COMMA() ,
 
+#define RPP_COMMA_IF(n) RPP_IF(n)(RPP_COMMA, RPP_EMPTY)()
+
 #endif

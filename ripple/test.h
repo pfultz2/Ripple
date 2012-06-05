@@ -127,19 +127,19 @@ RPP_EXPR(RPP_ENUM(3, RPP_BIND_DATA(TTP, T)))
 #undef FIXED
 #undef TTP
 
-// //RPP_FOR
-// #define PRED(s, x) RPP_BOOL(x)
-// #define OP(s, x) RPP_DEC(x)
-// #define MACRO(s, x) { x }
-// RPP_EXPR(RPP_FOR(PRED, OP, MACRO, 10)) // { 10 } { 9 } { 8 } { 7 } { 6 } { 5 } { 4 } { 3 } { 2 } { 1 } 
-// #undef PRED
-// #undef OP
-// #undef MACRO
+//RPP_FOR
+#define PRED(s, x) RPP_BOOL(x)
+#define OP(s, x) RPP_DEC(x)
+#define MACRO(s, x) { x }
+RPP_EXPR(RPP_FOR(PRED, OP, MACRO, 10)) // { 10 } { 9 } { 8 } { 7 } { 6 } { 5 } { 4 } { 3 } { 2 } { 1 } 
+#undef PRED
+#undef OP
+#undef MACRO
 
-// //RPP_REPEAT
-// #define MACRO(s, n, id) RPP_COMMA_IF(n) class id ## n
-// RPP_EXPR(RPP_REPEAT(3, RPP_BIND_DATA(MACRO, T))) // class T0, class T1, class T2
-// #undef MACRO
+//RPP_REPEAT
+#define MACRO(s, n, id) RPP_COMMA_IF(n) class id ## n
+RPP_EXPR(RPP_REPEAT(3, RPP_BIND_DATA(MACRO, T))) // class T0, class T1, class T2
+#undef MACRO
 
 // //auto
 // //RPP_AUTO_DELINEATE

@@ -60,5 +60,30 @@
 #define RPP_ENUM_FROM_TO(from, to, m) RPP_ENUM_FROM_TO_S(RPP_STATE(), from, to, m)
 #define RPP_ENUM_FROM_TO_S(s, from, to, m) RPP_DELINEATE_FROM_TO_S(s, from, to, RPP_COMMA, m)
 
+#define RPP_REPEAT(n, m) RPP_REPEAT_S(RPP_STATE(), n, m)
+#define RPP_REPEAT_S(s, n, m) RPP_DELINEATE_S(s, n, RPP_EMPTY, m)
+
+#define RPP_REPEAT_FROM_TO(from, to, m) RPP_REPEAT_FROM_TO_S(RPP_STATE(), from, to, m)
+#define RPP_REPEAT_FROM_TO_S(s, from, to, m) RPP_DELINEATE_FROM_TO_S(s, from, to, RPP_EMPTY, m)
+
+
+#define RPP_FOR(pred, op, macro, ...) RPP_FOR_S(RPP_STATE(), pred, op, macro, __VA_ARGS__)
+#define RPP_FOR_S(s, pred, op, macro, ...) \
+        RPP_FOR_I(RPP_OBSTRUCT(), RPP_INC(s), pred, RPP_INVOKER(pred), op, RPP_INVOKER(op), macro, RPP_INVOKER(macro), __VA_ARGS__) \
+
+#define RPP_FOR_INDIRECT() RPP_FOR_I
+#define RPP_FOR_I(_, s, pred, _p, op, _o, macro, _m, ...) \
+        RPP_WHEN _(_p()(s, pred, s, __VA_ARGS__)) \
+        ( \
+            _m()(s, macro, s, __VA_ARGS__) \
+            RPP_EXPR_S(s) _\
+            ( \
+                RPP_FOR_INDIRECT _()(RPP_OBSTRUCT _(), RPP_INC(s), pred, _p, op, _o, macro, _m, _o()(s, op, s, __VA_ARGS__) )\
+            ) \
+        ) \
+
+
+
+
 
 #endif
