@@ -141,6 +141,13 @@ RPP_EXPR(RPP_FOR(PRED, OP, MACRO, 10)) // { 10 } { 9 } { 8 } { 7 } { 6 } { 5 } {
 RPP_EXPR(RPP_REPEAT(3, RPP_BIND_DATA(MACRO, T))) // class T0, class T1, class T2
 #undef MACRO
 
+//RPP_WHILE
+#define PRED(s, state) RPP_BOOL(state)
+#define OP(s, state) RPP_DEC(state)
+RPP_EXPR(RPP_WHILE(PRED, OP, 100)) // 0
+#undef PRED
+#undef OP
+
 // //auto
 // //RPP_AUTO_DELINEATE
 // #define MACRO(s, n, var) var ## n

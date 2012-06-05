@@ -80,7 +80,24 @@
             ( \
                 RPP_FOR_INDIRECT _()(RPP_OBSTRUCT _(), RPP_INC(s), pred, _p, op, _o, macro, _m, _o()(s, op, s, __VA_ARGS__) )\
             ) \
-        ) \
+        )
+
+#define RPP_WHILE(pred, op, ...) RPP_WHILE_S(RPP_STATE(), pred, op, __VA_ARGS__)
+#define RPP_WHILE_S(s, pred, op, ...) \
+        RPP_WHILE_I(RPP_OBSTRUCT(), RPP_INC(s), pred, RPP_INVOKER(pred), op, RPP_INVOKER(op), __VA_ARGS__) \
+
+#define RPP_WHILE_INDIRECT() RPP_WHILE_I
+#define RPP_WHILE_I(_, s, pred, _p, op, _o, ...) \
+        RPP_IF _(_p()(s, pred, s, __VA_ARGS__)) \
+        ( \
+            RPP_EXPR_S(s) _\
+            ( \
+                RPP_WHILE_INDIRECT _()(RPP_OBSTRUCT _(), RPP_INC(s), pred, _p, op, _o, _o()(s, op, s, __VA_ARGS__) )\
+            ), \
+            __VA_ARGS__ \
+        )
+
+
 
 
 
