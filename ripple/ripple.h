@@ -16,6 +16,7 @@
 #include <ripple/basic.h>
 #include <ripple/bind.h>
 #include <ripple/cat.h>
+#include <ripple/compare.h>
 #include <ripple/config.h>
 #include <ripple/detection.h>
 #include <ripple/invoke.h>
@@ -25,6 +26,7 @@
 #include <ripple/recursion.h>
 #include <ripple/repetition.h>
 #include <ripple/search.h>
+#include <ripple/tuple.h>
 #include <ripple/type.h>
 
 #endif

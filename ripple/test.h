@@ -217,44 +217,41 @@ RPP_EXPR(RPP_WHILE(PRED, OP, 100)) // 0
 // RPP_AUTO_REPEAT(3, RPP_BIND_DATA(MACRO, T)) // class T0, class T1, class T2
 // #undef MACRO
 
-// /**
-//   * RPP_TUPLE
-//   */
+/**
+  * RPP_TUPLE
+  */
 
-// //RPP_TUPLE_NIL RPP_TUPLE_CONS
-// RPP_TUPLE_NIL()                         //
-// RPP_TUPLE_CONS(RPP_TUPLE_NIL(), a) // (a)
-// RPP_TUPLE_CONS(, a)                     // (a)
-// RPP_TUPLE_CONS((), a)                   // (a, )
+//RPP_TUPLE_NIL RPP_TUPLE_CONS
+RPP_TUPLE_NIL()                         //
+RPP_TUPLE_CONS(RPP_TUPLE_NIL(), a) // (a)
+RPP_TUPLE_CONS(, a)                     // (a)
+RPP_TUPLE_CONS((), a)                   // (a, )
 
-// //RPP_TUPLE_HEAD
-// #define DATA() (a, b, c)
-// RPP_TUPLE_HEAD(DATA()) // a
-// #undef DATA
+//RPP_TUPLE_HEAD
+#define DATA() (a, b, c)
+RPP_TUPLE_HEAD(DATA()) // a
+#undef DATA
 
-// //RPP_TUPLE_TAIL
-// #define DATA() (a, b, c)
-// RPP_TUPLE_TAIL(DATA()) // (b, c)
-// #undef DATA
+//RPP_TUPLE_TAIL
+#define DATA() (a, b, c)
+RPP_TUPLE_TAIL(DATA()) // (b, c)
+RPP_TUPLE_TAIL((a)) //
+#undef DATA
 
-// //RPP_TUPLE_IS_CONS
-// RPP_TUPLE_IS_CONS()                     // 0
-// RPP_TUPLE_IS_CONS(RPP_TUPLE_NIL()) // 0
-// RPP_TUPLE_IS_CONS(())            // 1
-// RPP_TUPLE_IS_CONS((x, y, z))            // 1
+//RPP_TUPLE_IS_CONS
+RPP_TUPLE_IS_CONS()                     // 0
+RPP_TUPLE_IS_CONS(RPP_TUPLE_NIL()) // 0
+RPP_TUPLE_IS_CONS(())            // 1
+RPP_TUPLE_IS_CONS((x, y, z))            // 1
 
-// //RPP_TUPLE_IS_NIL
-// RPP_TUPLE_IS_NIL()                     // 1
-// RPP_TUPLE_IS_NIL(RPP_TUPLE_NIL()) // 1
-// RPP_TUPLE_IS_NIL((x, y, z))            // 0
+//RPP_TUPLE_IS_NIL
+RPP_TUPLE_IS_NIL()                     // 1
+RPP_TUPLE_IS_NIL(RPP_TUPLE_NIL()) // 1
+RPP_TUPLE_IS_NIL((x, y, z))            // 0
 
-// //RPP_TUPLE_QUICK_SIZE
-// RPP_TUPLE_QUICK_SIZE((a, b, c))       // 3
-// RPP_TUPLE_QUICK_SIZE((a, b, c, d, e)) // 5
-
-// //RPP_TUPLE_SIZE
-// RPP_TUPLE_SIZE((a, b, c))       // 3
-// RPP_TUPLE_SIZE((a, b, c, d, e)) // 5
+//RPP_TUPLE_SIZE
+RPP_TUPLE_SIZE((a, b, c))       // 3
+RPP_TUPLE_SIZE((a, b, c, d, e)) // 5
 
 // //RPP_TUPLE_AS_ARGS
 // #define APPLY(prefix, tuple) \
