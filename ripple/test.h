@@ -253,6 +253,37 @@ RPP_TUPLE_IS_NIL((x, y, z))            // 0
 RPP_TUPLE_SIZE((a, b, c))       // 3
 RPP_TUPLE_SIZE((a, b, c, d, e)) // 5
 
+/**
+  * RPP_SEQ
+  */
+//RPP_SEQ_NIL RPP_SEQ_CONS
+RPP_SEQ_NIL() //
+RPP_SEQ_CONS((y)(z), x) // (x)(y)(z)
+RPP_SEQ_CONS((a, b)(c, d), +, -) // (+, -)(a, b)(c, d)
+RPP_SEQ_CONS(, x)                // (x)
+RPP_SEQ_CONS(RPP_SEQ_NIL(), *) // (*)
+
+//RPP_SEQ_HEAD
+RPP_SEQ_HEAD((1)(2)(3)) // 1
+RPP_SEQ_HEAD((a, b)(c, d)(e, f)) // a, b
+
+//RPP_SEQ_TAIL
+RPP_SEQ_TAIL((a)(b)(c)) // (b)(c)
+RPP_SEQ_TAIL((a, b)(c)(d, e, f)) // (c)(d, e, f)
+
+//RPP_SEQ_IS_CONS
+RPP_SEQ_IS_CONS((1)(2)(3))          // 1
+RPP_SEQ_IS_CONS(RPP_SEQ_NIL()) // 0
+RPP_SEQ_IS_CONS()             // 0
+RPP_SEQ_IS_CONS((a, b)(c, d)) // 1
+
+//RPP_SEQ_IS_NIL
+RPP_SEQ_IS_NIL((a)(b)(c))          // 0
+RPP_SEQ_IS_NIL(RPP_SEQ_NIL()) // 1
+RPP_SEQ_IS_NIL()             // 1
+RPP_SEQ_IS_NIL((a, b)(c, d)) // 0
+
+
 // //RPP_TUPLE_AS_ARGS
 // #define APPLY(prefix, tuple) \
 //     RPP_CAT(prefix, RPP_TUPLE_QUICK_SIZE(tuple)) \
